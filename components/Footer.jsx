@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {/* Column 1: Logo & Description */}
         <div>
-          <h2 className="text-2xl font-bold text-white mb-4">YourShop</h2>
+          <h2 className="text-2xl font-bold text-white mb-4">FOODIES</h2>
           <p className="text-gray-400">
             Your one-stop destination for quality products and excellent service.
           </p>
@@ -29,7 +29,7 @@ const Footer = () => {
             </li>
             <li>
               <a href="/services" className="hover:text-white transition duration-300">
-                Services
+                Menu
               </a>
             </li>
             <li>
@@ -45,7 +45,7 @@ const Footer = () => {
           <h3 className="text-lg font-semibold text-white mb-4">Contact</h3>
           <p className="text-gray-400">123 Main Street, Dinajpur, Bangladesh</p>
           <p className="text-gray-400">Phone: +880 1751 260010</p>
-          <p className="text-gray-400">Email: info@yourshop.com</p>
+          <p className="text-gray-400">Email: arifahmmadsumon@gmail.com</p>
         </div>
 
         {/* Column 4: Social Media */}
