@@ -39,7 +39,7 @@ const HomeDelivery = () => {
         </div>
       </div>
       <div className="w-full lg:w-1/2 mt-8 lg:mt-0 flex justify-center">
-        <Image src='/images/deli.png' height={1000} width={1000} alt="Delivery" className="rounded-lg shadow-lg object-cover" />
+        <Image src='/images/deli.png' height={800} width={800} alt="Delivery" className="rounded-lg shadow-lg object-cover" />
       </div>
     </div>
   );
