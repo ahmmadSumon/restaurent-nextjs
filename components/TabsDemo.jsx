@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { foodItems, drinkItems } from "../data";
 import Image from "next/image";
 import { Tabs } from "../components/ui/tabs";
+import useCartStore from "../app/store/cartstore";
+
 import {
   Carousel,
   CarouselContent,
@@ -92,6 +94,8 @@ const MenuTabContent = ({ title, items }) => {
 
 // Carousel Component
 const MenuCarousel = ({ items }) => {
+  const addToCart = useCartStore((state) => state.addToCart); // Access Zustand's addToCart function
+
   return (
     <Carousel opts={{ align: "center" }} className="w-full">
       <CarouselContent>
@@ -112,6 +116,22 @@ const MenuCarousel = ({ items }) => {
                 <div className="absolute inset-0 flex flex-col items-baseline justify-baseline px-5 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <h3 className="text-xl font-bold text-white">{item.title}</h3>
                   <p className="font-bold mt-2 text-white">{item.price}</p>
+
+                  {/* Add to Cart Button */}
+                  <button
+  onClick={() => {
+    console.log(item.image); // Debug: Check the image URL
+    addToCart({
+      title: item.title,
+      price: item.price,
+      image: item.image,
+    });
+  }}
+  className="mt-4 px-4 py-2 bg-[#f14321] text-white rounded hover:bg-blue-600 transition-colors"
+>
+  Add to Cart
+</button>
+
                 </div>
               </div>
             </div>

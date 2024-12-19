@@ -1,11 +1,18 @@
+"use client";
 import React from "react";
-import { Button } from "@/components/ui/button"; // Import from generated ShadCN UI components
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet"; // Import Sheet component
-import { Menu, ShoppingBag, Home, Globe,Bike } from "lucide-react"; // Icons from Lucide React
+import useCartStore from "../app/store/cartstore";
+import { Button } from "@/components/ui/button"; // ShadCN UI components
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, ShoppingBag, Home, Globe, Bike } from "lucide-react";
 import { TiThMenu } from "react-icons/ti";
+import Link from "next/link";
+
 const Navbar = () => {
+  const cartItems = useCartStore((state) => state.cartItems);
+  const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0); // Total cart quantity
+
   return (
-    <nav className="max-w-7xl mx-auto flex items-center justify-between h-16 px-6 py-10  ">
+    <nav className="max-w-7xl mx-auto flex items-center justify-between h-16 px-6 py-10">
       {/* Left Section - Desktop */}
       <div className="hidden md:flex space-x-6">
         <a href="/" className="flex items-center text-lg font-medium hover:text-gray-400">
@@ -15,7 +22,7 @@ const Navbar = () => {
           Menu
         </a>
         <a href="/contact" className="flex items-center text-lg font-medium hover:text-gray-400">
-         Contact Us
+          Contact Us
         </a>
       </div>
 
@@ -23,30 +30,40 @@ const Navbar = () => {
       <div className="text-2xl font-bold hover:text-gray-400">
         <a href="/">FOODIES</a>
       </div>
-    
+
       {/* Right Section - Desktop */}
-      <div className="hidden md:flex space-x-4 ">
-        <Button   asChild>
-          <a href="/order"><Bike className="w-5 h-5 mr-2"/>Order Online</a>
-        </Button>
+      <div className="hidden md:flex space-x-4">
         <Button asChild>
-          <a href="/order" className="flex items-center">
-            <ShoppingBag className="w-5 h-5 mr-2" />
-            Cart
+          <a href="/order">
+            <Bike className="w-5 h-5 mr-2" />
+            Order Online
           </a>
         </Button>
-        <Button   asChild>
+
+        {/* Cart Button with Dynamic Count */}
+        <Button asChild>
+          <Link href="/cart" className="relative flex items-center">
+            <ShoppingBag className="w-5 h-5 mr-2" />
+            Cart
+            {cartItemCount > 0 && (
+              <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">
+                {cartItemCount}
+              </span>
+            )}
+          </Link>
+        </Button>
+        <Button asChild>
           <a href="/reservation">Reservation</a>
         </Button>
       </div>
 
-      {/* Mobile Menu (Sheet) */}
+      {/* Mobile Menu */}
       <div className="md:hidden">
         <Sheet>
           <SheetTrigger asChild>
-          <Button variant="ghost">
-  <TiThMenu  style={{ width: "30px", height: "30px" }}/> {/* This should set the icon size to 36px */}
-</Button>
+            <Button variant="ghost">
+              <TiThMenu style={{ width: "30px", height: "30px" }} />
+            </Button>
           </SheetTrigger>
           <SheetContent side="left" className="bg-[#001100] text-white w-64">
             <SheetHeader>
@@ -64,13 +81,18 @@ const Navbar = () => {
               <a href="/order" className="flex items-center text-lg font-medium hover:text-gray-400">
                 Order Online
               </a>
-              <a href="/reservation" className="flex items-center text-lg font-medium hover:text-gray-400">
+              {/* Cart in Mobile View */}
+              <a href="/cart" className="flex items-center text-lg font-medium hover:text-gray-400 relative">
                 <ShoppingBag className="w-5 h-5 mr-2" />
                 Cart
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-2 left-5 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+                    {cartItemCount}
+                  </span>
+                )}
               </a>
               <a href="/reservation" className="flex items-center text-lg font-medium hover:text-gray-400">
-                <ShoppingBag className="w-5 h-5 mr-2" />
-                Cart
+                Reservation
               </a>
             </div>
           </SheetContent>
