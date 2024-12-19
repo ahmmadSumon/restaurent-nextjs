@@ -2,9 +2,16 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const ReservationSection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false); // State to track form submission
+
+  // Hook to track when the component is in view
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Trigger only once when the component comes into view
+    threshold: 0.1, // Trigger when 20% of the component is in view
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +25,7 @@ const ReservationSection = () => {
   // Animation Variants
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } },
   };
 
   const buttonVariants = {
@@ -37,9 +44,10 @@ const ReservationSection = () => {
       </motion.h5>
       <div className="grid grid-cols-1 md:grid-cols-2">
         <motion.div
+          // Attach the ref to trigger the animation when in view
           className="md:col-span-1"
-          initial="hidden"
-          animate="visible"
+          
+         // Trigger animation when in view
           variants={containerVariants}
         >
           <div className="relative h-full">
@@ -53,9 +61,10 @@ const ReservationSection = () => {
           </div>
         </motion.div>
         <motion.div
+          ref={ref} // Attach the ref to trigger the animation when in view
           className="md:col-span-1 bg-transparent flex items-center justify-center p-8"
           initial="hidden"
-          animate="visible"
+          animate={inView ? "visible" : "hidden"} // Trigger animation when in view
           variants={containerVariants}
           transition={{ delay: 0.3 }}
         >
@@ -83,7 +92,7 @@ const ReservationSection = () => {
             ) : (
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
                 <h1 className="text-white text-4xl font-bold mb-4">
@@ -93,7 +102,7 @@ const ReservationSection = () => {
                   <motion.div
                     className="grid grid-cols-1 md:grid-cols-2 gap-4"
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    animate={inView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
                   >
                     <div className="col-span-1">
@@ -160,7 +169,7 @@ const ReservationSection = () => {
                     <motion.div
                       className="col-span-full"
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      animate={inView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ duration: 0.7, delay: 0.8 }}
                     >
                       <button

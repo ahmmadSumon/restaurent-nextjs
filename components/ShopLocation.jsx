@@ -1,11 +1,31 @@
-import Image from "next/image";
+"use client";
 import React from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const ShopLocation = () => {
+  // Intersection observer hook to trigger animations
+  const { ref: textRef, inView: textInView } = useInView({
+    triggerOnce: true, // Animation will trigger once when the element enters the view
+    threshold: 0.2, // Trigger when 20% of the element is visible
+  });
+
+  const { ref: imageRef, inView: imageInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
   return (
-    <section className="flex flex-col md:flex-row items-center justify-center max-w-7xl mx-auto mt-20 p-8 bg-transparent">
+    <section className="flex flex-col mb-16 md:flex-row items-center justify-center max-w-7xl mx-auto mt-20 p-8 bg-transparent">
       {/* Left Side: Text Content */}
-      <div className="w-full md:w-1/2 p-6">
+      <motion.div
+        ref={textRef}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: textInView ? 1 : 0, y: textInView ? 0 : 50 }}
+        transition={{ duration: 1 }}
+        className="w-full md:w-1/2 p-6"
+      >
         <h2 className="text-3xl font-bold mb-4 text-white">Visit Our Shop</h2>
         <p className="text-white mb-6 leading-relaxed">
           Come and enjoy our warm atmosphere and delicious offerings. Whether you're here for a quick coffee or a full meal, our shop is the perfect place to relax and recharge.
@@ -19,18 +39,19 @@ const ShopLocation = () => {
           Monday - Saturday: 8:00 AM - 10:00 PM<br />
           Sunday: Closed
         </p>
-      </div>
+      </motion.div>
 
-      {/* Right Side: Embedded Google Map */}
-      <div className="w-full md:w-1/2 h-80 md:h-[400px] p-4">
-        {/* <iframe
-          title="Shop Location"
-          className="w-full h-full rounded-lg shadow-lg"
-          src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=Dinajpur,Bangladesh"
-          allowFullScreen
-        ></iframe> */}
-        <Image width={1000} height={1000} src="/map.jpg" alt="map"/>
-      </div>
+      {/* Right Side: Embedded Google Map (Animated) */}
+      <motion.div
+        ref={imageRef}
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: imageInView ? 1 : 0, x: imageInView ? 0 : 50 }}
+        transition={{ duration: 1 }}
+        className="w-full md:w-1/2 h-80 md:h-[400px] p-4"
+      >
+        {/* Replace with actual Google Map iframe if needed */}
+        <Image width={500} height={500} src="/images/fhg.png" alt="map" className="rounded-lg shadow-lg" />
+      </motion.div>
     </section>
   );
 };

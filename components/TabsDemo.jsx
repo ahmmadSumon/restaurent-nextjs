@@ -95,6 +95,7 @@ const MenuTabContent = ({ title, items }) => {
 };
 
 // Carousel Component
+// Carousel Component
 const MenuCarousel = ({ items }) => {
   const addToCart = useCartStore((state) => state.addToCart); // Access Zustand's addToCart function
   const { toast } = useToast();  // Ensure it's destructured properly
@@ -110,8 +111,8 @@ const MenuCarousel = ({ items }) => {
                 <Image
                   src={item.image}
                   alt={item.title}
-                  width={400}
-                  height={300}
+                  width={400}    // Set width here
+                  height={300}   // Set height here
                   className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
                 />
                 {/* Hover Content */}
@@ -139,7 +140,6 @@ const MenuCarousel = ({ items }) => {
                   >
                     Add to Cart
                   </button>
-
                 </div>
               </div>
             </div>

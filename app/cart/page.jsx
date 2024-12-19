@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import useCartStore from "../store/cartstore";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Cart = () => {
   const cartItems = useCartStore((state) => state.cartItems);
@@ -41,35 +42,70 @@ const Cart = () => {
   const deliveryCharge = totalPrice > 500 ? 0 : 50; // Delivery charge logic
   const finalPrice = totalPrice + deliveryCharge; // Final price including delivery charge
 
+  // Animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5 } },
+  };
+
   return (
-    <div className="container mx-auto my-20 py-5 bg-transparent text-white shadow-xl rounded-lg">
-      <div className="text-center animate-fadeInUp">
+    <motion.div
+      className="container mx-auto my-20 py-5 bg-transparent text-white shadow-xl rounded-lg"
+      initial="hidden"
+      animate="visible"
+      variants={fadeIn}
+    >
+      <motion.div
+        className="text-center"
+        variants={fadeInUp}
+        initial="hidden"
+        animate="visible"
+      >
         <h5 className="font-secondary py-3 text-lg font-semibold uppercase tracking-widest text-[#F14321]">
           Your Cart
         </h5>
         <h2 className="mb-5 text-3xl font-bold text-gray-200">Cart Items</h2>
-      </div>
+      </motion.div>
       <div className="flex justify-center items-center">
-        <div className="bg-transparent text-gray-100 rounded-lg shadow-lg p-6 w-full md:w-2/3 lg:w-1/2">
+        <motion.div
+          className="bg-transparent text-gray-100 rounded-lg shadow-lg p-6 w-full md:w-2/3 lg:w-1/2"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+        >
           {orderConfirmed ? (
-            <div className="text-center">
+            <motion.div className="text-center" variants={fadeIn}>
               <p className="text-2xl font-semibold text-green-500 mb-4">
                 Order Confirmed!
               </p>
               <p className="text-lg text-gray-300">
                 Wait for our response. Thank you!
               </p>
-            </div>
+            </motion.div>
           ) : (
             <>
               {cartItems.length === 0 ? (
-                <p className="text-gray-400 text-center">Your cart is empty</p>
+                <motion.p
+                  className="text-gray-400 text-center"
+                  variants={fadeIn}
+                >
+                  Your cart is empty
+                </motion.p>
               ) : (
-                <ul className="divide-y divide-gray-700">
+                <motion.ul
+                  className="divide-y divide-gray-700"
+                  variants={fadeInUp}
+                >
                   {cartItems.map((item, index) => (
-                    <li
+                    <motion.li
                       key={index}
                       className="py-4 flex justify-between items-center"
+                      variants={fadeInUp}
                     >
                       <div className="flex items-center gap-4">
                         {item.image ? (
@@ -118,40 +154,54 @@ const Cart = () => {
                           Remove
                         </button>
                       </div>
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               )}
               {cartItems.length > 0 && (
                 <>
-                  <div className="mt-6 text-lg font-semibold text-gray-200">
-                    Subtotal: <span className="text-[#F14321]">{totalPrice} TK</span>
-                  </div>
-                  <div className="mt-2 text-sm text-gray-300">
+                  <motion.div
+                    className="mt-6 text-lg font-semibold text-gray-200"
+                    variants={fadeIn}
+                  >
+                    Subtotal:{" "}
+                    <span className="text-[#F14321]">{totalPrice} TK</span>
+                  </motion.div>
+                  <motion.div
+                    className="mt-2 text-sm text-gray-300"
+                    variants={fadeIn}
+                  >
                     Delivery Charge:{" "}
                     <span className="text-[#F14321]">
                       {deliveryCharge === 0 ? "Free" : `${deliveryCharge} TK`}
                     </span>
-                  </div>
-                  <div className="mt-4 text-lg font-bold text-gray-200">
+                  </motion.div>
+                  <motion.div
+                    className="mt-4 text-lg font-bold text-gray-200"
+                    variants={fadeIn}
+                  >
                     Final Price:{" "}
                     <span className="text-[#F14321]">{finalPrice} TK</span>
-                  </div>
-                  <button
+                  </motion.div>
+                  <motion.button
                     className="mt-4 w-full py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
                     onClick={clearCart}
+                    variants={fadeIn}
                   >
                     Clear Cart
-                  </button>
+                  </motion.button>
                 </>
               )}
               <Link href="/menu">
-                <button className="mt-4 w-full py-2 bg-[#F14321] text-white rounded hover:bg-gray-300 hover:text-[#000] transition">
+                <motion.button
+                  className="mt-4 w-full py-2 bg-[#F14321] text-white rounded hover:bg-gray-300 hover:text-[#000] transition"
+                  variants={fadeIn}
+                >
                   Continue Shopping
-                </button>
+                </motion.button>
               </Link>
               {cartItems.length > 0 && (
-                <div className="mt-6">
+                <motion.div className="mt-6" variants={fadeInUp}>
                   <h3 className="text-lg font-bold text-gray-200 mb-3">
                     Customer Details
                   </h3>
@@ -185,13 +235,13 @@ const Cart = () => {
                   >
                     Order Now
                   </button>
-                </div>
+                </motion.div>
               )}
             </>
           )}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

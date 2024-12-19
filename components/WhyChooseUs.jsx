@@ -1,27 +1,69 @@
 // components/WhyChooseUs.tsx
+"use client"
 import React from 'react';
+import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 
 const WhyChooseUs = () => {
+  const { ref: sectionRef, inView: sectionInView } = useInView({
+    triggerOnce: true, // trigger animation only once
+    threshold: 0.2, // trigger when 20% of the section is in view
+  });
+
   return (
-    <div className="bg-cover bg-center bg-no-repeat mt-10 " style={{
+    <div
+      className="bg-cover bg-center bg-no-repeat mt-10 "
+      style={{
         backgroundImage: "url('/why.jpg')", // Replace with your image path
-      }}>
-      <section id="features" className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-neutral-900 ">
-        <div className="relative mx-auto max-w-5xl text-center">
+      }}
+    >
+      <section
+        id="features"
+        ref={sectionRef}
+        className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-neutral-900"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: sectionInView ? 1 : 0, y: sectionInView ? 0 : 50 }}
+          transition={{ duration: 1 }}
+          className="relative mx-auto max-w-5xl text-center"
+        >
           <span className="text-black my-3 flex items-center justify-center font-medium uppercase tracking-wider">
             Why Choose Us
           </span>
-          <h2 className="block w-full text-black/80 bg-clip-text font-bold  text-3xl sm:text-4xl">
+          <h2 className="block w-full text-black/80 bg-clip-text font-bold text-3xl sm:text-4xl">
             Discover a Dining Experience Like No Other
           </h2>
           <p className="mx-auto my-4 w-full max-w-xl bg-transparent text-center font-medium leading-relaxed tracking-wide text-gray-900">
             Our restaurant offers an unforgettable culinary journey. No reservations required – just come and enjoy a delightful meal.
           </p>
-        </div>
-        <div className="relative mx-auto max-w-7xl z-10 grid grid-cols-1 gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-3">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: sectionInView ? 1 : 0, y: sectionInView ? 0 : 50 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="relative mx-auto max-w-7xl z-10 grid grid-cols-1 gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-3"
+        >
           <div className="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow">
-            <div className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border" style={{ backgroundImage: 'linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)', borderColor: 'rgb(93, 79, 240)' }}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-color-swatch" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+            <div
+              className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border"
+              style={{
+                backgroundImage: 'linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)',
+                borderColor: 'rgb(93, 79, 240)',
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-color-swatch"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M19 3h-4a2 2 0 0 0 -2 2v12a4 4 0 0 0 8 0v-12a2 2 0 0 0 -2 -2"></path>
                 <path d="M13 7.35l-2 -2a2 2 0 0 0 -2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l9 9"></path>
@@ -35,8 +77,25 @@ const WhyChooseUs = () => {
             </p>
           </div>
           <div className="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow">
-            <div className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border" style={{ backgroundImage: 'linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)', borderColor: 'rgb(93, 79, 240)' }}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-bolt" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+            <div
+              className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border"
+              style={{
+                backgroundImage: 'linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)',
+                borderColor: 'rgb(93, 79, 240)',
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-bolt"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <polyline points="13 3 13 10 19 10 11 21 11 14 5 14 13 3"></polyline>
               </svg>
@@ -47,8 +106,25 @@ const WhyChooseUs = () => {
             </p>
           </div>
           <div className="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow">
-            <div className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border" style={{ backgroundImage: 'linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)', borderColor: 'rgb(93, 79, 240)' }}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-tools" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+            <div
+              className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border"
+              style={{
+                backgroundImage: 'linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)',
+                borderColor: 'rgb(93, 79, 240)',
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-tools"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4"></path>
                 <line x1="14.5" y1="5.5" x2="18.5" y2="9.5"></line>
@@ -63,9 +139,23 @@ const WhyChooseUs = () => {
               Our kitchen is stocked with top-notch equipment, ensuring every dish is prepared to perfection.
             </p>
           </div>
-        </div>
-        <div className="absolute bottom-0 left-0 z-0 h-1/3 w-full border-b" style={{ backgroundImage: 'linear-gradient(to right top, rgba(79, 70, 229, 0.2) 0%, transparent 50%, transparent 100%)', borderColor: 'rgba(92, 79, 240, 0.2)' }}></div>
-        <div className="absolute bottom-0 right-0 z-0 h-1/3 w-full" style={{ backgroundImage: 'linear-gradient(to left top, rgba(220, 38, 38, 0.2) 0%, transparent 50%, transparent 100%)', borderColor: 'rgba(92, 79, 240, 0.2)' }}></div>
+        </motion.div>
+        <div
+          className="absolute bottom-0 left-0 z-0 h-1/3 w-full border-b"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right top, rgba(79, 70, 229, 0.2) 0%, transparent 50%, transparent 100%)',
+            borderColor: 'rgba(92, 79, 240, 0.2)',
+          }}
+        ></div>
+        <div
+          className="absolute bottom-0 right-0 z-0 h-1/3 w-full"
+          style={{
+            backgroundImage:
+              'linear-gradient(to left top, rgba(220, 38, 38, 0.2) 0%, transparent 50%, transparent 100%)',
+            borderColor: 'rgba(255, 93, 93, 0.2)',
+          }}
+        ></div>
       </section>
     </div>
   );

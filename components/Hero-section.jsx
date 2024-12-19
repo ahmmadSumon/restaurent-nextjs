@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-
+import { BackgroundLines } from "@/components/ui/background-lines";
 const Hero = () => {
   // Animation variants
   const textVariants = {
@@ -25,6 +25,7 @@ const Hero = () => {
       className="hero md:h-[70vh] mt-20 flex justify-center items-center relative overflow-hidden bg-cover bg-center"
       style={{ backgroundImage: 'url(/bg.jpg)' }}
     >
+        
       <motion.div
         className="hero-content flex flex-col gap-8 items-center justify-center px-4 md:px-20 lg:px-40"
         initial="hidden"
@@ -32,11 +33,13 @@ const Hero = () => {
       >
         <div className="container flex flex-col md:flex-row justify-between items-center mt-2 py-4 space-y-8 md:space-y-0">
           {/* Left column (text content) */}
+        
           <motion.div
             className="w-full md:w-[40vw] relative bg-cover bg-center rounded-lg p-6"
             variants={textVariants}
           >
-            <div className="bg-opacity-60 py-6 rounded-lg">
+           
+            <div className="bg-opacity-60 py-6 rounded-lg ">
               <motion.h1
                 className="text-4xl md:text-7xl font-extrabold w-full"
                 initial="hidden"
@@ -73,9 +76,12 @@ const Hero = () => {
                 </motion.div>
               </div>
             </div>
+         
           </motion.div>
+         
         </div>
       </motion.div>
+      
     </section>
   );
 };

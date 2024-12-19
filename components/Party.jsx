@@ -43,7 +43,7 @@ const Party = () => {
         {/* Animated Button */}
         <Link href="/menu">
           <motion.button
-            className="bg-[#F14321] text-xl text-white px-4 py-3 rounded-xl transform transition-transform"
+            className="text-lg text-white bg-[#F14321] hover:bg-gray-200 hover:text-[#000] hover:shadow-md px-3 py-2 flex justify-center items-center gap-2 rounded-md font-medium transition duration-300"
             variants={buttonVariants}
             whileHover="hover"
           >

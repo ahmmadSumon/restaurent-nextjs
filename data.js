@@ -24,7 +24,7 @@ export const foodItems = [
       title: 'Waffles',
       price: '100 TK',
       category: 'Breakfast',
-      image: '/images/soup.png',
+      image: '/images/waffles.webp',
       description: 'Crispy waffles topped with fresh fruits and whipped cream.'
     },
     { 
@@ -38,7 +38,7 @@ export const foodItems = [
       title: 'Chicken Big Burger',
       price: '100 TK',
       category: 'Lunch',
-      image: '/bg.jpg',
+      image: '/images/burger.jpg',
       description: 'Fresh Caesar salad with homemade dressing and croutons.'
     },
     { 
@@ -52,21 +52,21 @@ export const foodItems = [
       title: 'Chicken Big Cheese Burger',
       price: '150 TK',
       category: 'Lunch',
-      image: '/images/pizza.png',
+      image: '/images/burger2.jpg',
       description: 'Juicy steak served with roasted vegetables and mashed potatoes.'
     },
     { 
       title: 'pizza1',
       price: '250',
       category: 'Breakfast',
-      image: '/images/pizza.png',
+      image: '/images/pizza.jpg',
       description: 'Tender roast chicken seasoned with herbs and spices.'
     },
     { 
       title: 'pizza2',
       price: '200',
       category: 'Breakfast',
-      image: '/images/pizza.png',
+      image: '/images/pizza.jpeg',
       description: 'Classic spaghetti bolognese made with homemade sauce.'
     },
     { 
@@ -90,42 +90,42 @@ export const foodItems = [
       title: 'Special Hot Coffee',
       price: '100 TK',
       category: 'Drinks',
-      image: '/images/rr.jpg',
+      image: '/images/hotcoffe.jpg',
       description: 'A coffee drink made with espresso and steamed milk.'
     },
     { 
       title: 'Cappuccino',
       price: '120 TK',
       category: 'Drinks',
-      image: '/images/rr.jpg',
+      image: '/images/cappa.jpg',
       description: 'A coffee drink made with espresso and foamed milk.'
     },
     { 
       title: 'Hot Coffee',
       price: '70 TK',
       category: 'Drinks',
-      image: '/images/rr.jpg',
+      image: '/images/spehot.jpg',
       description: 'A strong shot of coffee made by forcing steam through finely-ground coffee beans.'
     },
     { 
       title: 'Special Lassi',
       price: '90 TK',
       category: 'Drinks',
-      image: '/images/rr.jpg',
+      image: '/images/lassi.jpg',
       description: 'Chilled tea served over ice, perfect for hot summer days.'
     },
     { 
       title: 'Lemonade',
       price: '50 TK',
       category: 'Drinks',
-      image: '/images/rr.jpg',
+      image: '/images/lemonade.jpg',
       description: 'A refreshing blended drink made with fresh fruits and yogurt.'
     },
     { 
       title: 'Cold Coffee',
       price: '90 TK',
       category: 'Drinks',
-      image: '/images/rr.jpg',
+      image: '/images/cold.jpg',
       description: 'A comforting and creamy chocolate drink, perfect for cold days.'
     }
   ];

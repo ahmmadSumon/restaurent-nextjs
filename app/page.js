@@ -1,3 +1,4 @@
+import { BackgroundLinesDemo } from "@/components/BackgroundLinesDemo";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero-section";
 import HomeDelivery from "@/components/HomeDelivery";
@@ -21,7 +22,7 @@ export default function Home() {
       <ReservationSection/>
       <WhyChooseUs/>
       <HomeDelivery/>
-      <InfiniteMovingCardsDemo/>
+      <BackgroundLinesDemo/>
       <ShopLocation/>
  
     </div>
