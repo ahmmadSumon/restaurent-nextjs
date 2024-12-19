@@ -7,6 +7,7 @@ import { Menu, ShoppingBag, Home, Globe, Bike } from "lucide-react";
 import { TiThMenu } from "react-icons/ti";
 import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
+
 const Navbar = () => {
   const cartItems = useCartStore((state) => state.cartItems);
   const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0); // Total cart quantity
@@ -33,11 +34,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 bg-[#001100] shadow-md transition-transform duration-300 ${
+      className={`fixed top-0 w-full z-50 bg-[#001100] shadow-md transition-transform duration-300 overflow-x-hidden ${
         isScrolledUp ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-6 py-10">
+      <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-4 py-10">
         {/* Left Section - Desktop */}
         <div className="hidden md:flex space-x-6">
           <Link href="/" className="flex items-center text-lg font-medium hover:text-gray-400">
@@ -50,8 +51,8 @@ const Navbar = () => {
             Contact Us
           </Link>
           <Link href="/reservation" className="flex items-center text-lg font-medium hover:text-gray-400">
-                  Reservation
-                </Link>
+            Reservation
+          </Link>
         </div>
 
         {/* Center Section - Logo */}
@@ -67,7 +68,6 @@ const Navbar = () => {
               Order Online
             </Link>
           </Button>
-          
 
           {/* Cart Button with Dynamic Count */}
           <Button asChild>
@@ -83,41 +83,37 @@ const Navbar = () => {
           </Button>
           <Button asChild>
             <Link href="/signup">
-              <CgProfile   className="w-5 h-5 " />
-              
+              <CgProfile className="w-5 h-5" />
             </Link>
           </Button>
-         
         </div>
 
         {/* Mobile Menu */}
         <div className="md:hidden">
           <Sheet>
-               <Link href="/cart">
+            <Link href="/cart">
               <Button variant="ghost">
                 <ShoppingBag style={{ width: "30px", height: "30px" }} />
                 {cartItemCount > 0 && (
-                    <span className="absolute top-2 ml-4  inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
-                      {cartItemCount}
-                    </span>
-                  )}
+                  <span className="absolute top-2 ml-4 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+                    {cartItemCount}
+                  </span>
+                )}
               </Button>
-          </Link>
-              
-           
+            </Link>
+
             <SheetTrigger asChild>
               <Button variant="ghost">
                 <TiThMenu style={{ width: "30px", height: "30px" }} />
               </Button>
-              
             </SheetTrigger>
-            <SheetContent side="left" className="bg-[#001100] text-white w-64">
+            <SheetContent side="left" className="bg-[#001100] text-white w-64 max-w-full overflow-hidden">
               <SheetHeader>
                 <h2 className="text-lg font-bold">Menu</h2>
               </SheetHeader>
               <div className="flex flex-col mt-4 space-y-4">
                 <Link href="/" className="flex items-center text-lg font-medium hover:text-gray-400">
-                <Home className="w-5 h-5 mr-2" />
+                  <Home className="w-5 h-5 mr-2" />
                   Home
                 </Link>
                 <Link href="/menu" className="flex items-center text-lg font-medium hover:text-gray-400">
@@ -125,7 +121,7 @@ const Navbar = () => {
                   Menu
                 </Link>
                 <Link href="/menu" className="flex items-center text-lg font-medium hover:text-gray-400">
-                <Bike className="w-5 h-5 mr-2" />
+                  <Bike className="w-5 h-5 mr-2" />
                   Order Online
                 </Link>
                 {/* Cart in Mobile View */}
@@ -142,8 +138,8 @@ const Navbar = () => {
                   Reservation
                 </Link>
                 <Link href="/contact" className="flex items-center text-lg font-medium hover:text-gray-400">
-            Contact Us
-          </Link>
+                  Contact Us
+                </Link>
               </div>
             </SheetContent>
           </Sheet>
