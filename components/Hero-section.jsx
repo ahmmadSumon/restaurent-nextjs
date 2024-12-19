@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const Hero = () => {
   return (
-    <section className="hero md:h-[70vh] flex justify-center items-center relative overflow-hidden  bg-cover bg-center"  style={{ backgroundImage: 'url(/bg.jpg)' }}>
+    <section className="hero md:h-[70vh] mt-20 flex justify-center items-center relative overflow-hidden  bg-cover bg-center"  style={{ backgroundImage: 'url(/bg.jpg)' }}>
       <div className="hero-content flex flex-col gap-8 items-center justify-center px-4 md:px-20 lg:px-40"   >
         <div className="container flex flex-col md:flex-row justify-between items-center mt-2 py-4 space-y-8 md:space-y-0">
           

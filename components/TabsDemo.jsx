@@ -13,6 +13,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+import { useToast } from "../hooks/use-toast"
+
 export function TabsDemo() {
   // State to manage the active tab based on time
   const [activeTab, setActiveTab] = useState("breakfast");
@@ -95,6 +97,7 @@ const MenuTabContent = ({ title, items }) => {
 // Carousel Component
 const MenuCarousel = ({ items }) => {
   const addToCart = useCartStore((state) => state.addToCart); // Access Zustand's addToCart function
+  const { toast } = useToast();  // Ensure it's destructured properly
 
   return (
     <Carousel opts={{ align: "center" }} className="w-full">
@@ -111,7 +114,6 @@ const MenuCarousel = ({ items }) => {
                   height={300}
                   className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
                 />
-
                 {/* Hover Content */}
                 <div className="absolute inset-0 flex flex-col items-baseline justify-baseline px-5 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <h3 className="text-xl font-bold text-white">{item.title}</h3>
@@ -119,18 +121,24 @@ const MenuCarousel = ({ items }) => {
 
                   {/* Add to Cart Button */}
                   <button
-  onClick={() => {
-    console.log(item.image); // Debug: Check the image URL
-    addToCart({
-      title: item.title,
-      price: item.price,
-      image: item.image,
-    });
-  }}
-  className="mt-4 px-4 py-2 bg-[#f14321] text-white rounded hover:bg-blue-600 transition-colors"
->
-  Add to Cart
-</button>
+                    onClick={() => {
+                      addToCart({
+                        title: item.title,
+                        price: item.price,
+                        image: item.image,
+                      });
+
+                      // Trigger toast
+                      toast({
+                        title: `${item.title} added to cart!`,
+                        description: `Price: ${item.price}`,
+                        duration: 3000, // Duration for toast
+                      });
+                    }}
+                    className="mt-4 px-4 py-2 bg-[#f14321] text-white rounded hover:bg-blue-600 transition-colors"
+                  >
+                    Add to Cart
+                  </button>
 
                 </div>
               </div>
