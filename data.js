@@ -66,7 +66,7 @@ export const foodItems = [
       title: 'pizza2',
       price: '200',
       category: 'Breakfast',
-      image: '/images/pizza.jpg',
+      image: '/images/pizza.png',
       description: 'Classic spaghetti bolognese made with homemade sauce.'
     },
     { 

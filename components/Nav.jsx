@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/
 import { Menu, ShoppingBag, Home, Globe, Bike } from "lucide-react";
 import { TiThMenu } from "react-icons/ti";
 import Link from "next/link";
-
+import { CgProfile } from "react-icons/cg";
 const Navbar = () => {
   const cartItems = useCartStore((state) => state.cartItems);
   const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0); // Total cart quantity
@@ -49,6 +49,9 @@ const Navbar = () => {
           <Link href="/contact" className="flex items-center text-lg font-medium hover:text-gray-400">
             Contact Us
           </Link>
+          <Link href="/reservation" className="flex items-center text-lg font-medium hover:text-gray-400">
+                  Reservation
+                </Link>
         </div>
 
         {/* Center Section - Logo */}
@@ -59,11 +62,12 @@ const Navbar = () => {
         {/* Right Section - Desktop */}
         <div className="hidden md:flex space-x-4">
           <Button asChild>
-            <Link href="/order">
+            <Link href="/menu">
               <Bike className="w-5 h-5 mr-2" />
               Order Online
             </Link>
           </Button>
+          
 
           {/* Cart Button with Dynamic Count */}
           <Button asChild>
@@ -78,13 +82,29 @@ const Navbar = () => {
             </Link>
           </Button>
           <Button asChild>
-            <Link href="/reservation">Reservation</Link>
+            <Link href="/signup">
+              <CgProfile   className="w-5 h-5 " />
+              
+            </Link>
           </Button>
+         
         </div>
 
         {/* Mobile Menu */}
         <div className="md:hidden">
           <Sheet>
+               <Link href="/cart">
+              <Button variant="ghost">
+                <ShoppingBag style={{ width: "30px", height: "30px" }} />
+                {cartItemCount > 0 && (
+                    <span className="absolute top-2 ml-4  inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+                      {cartItemCount}
+                    </span>
+                  )}
+              </Button>
+          </Link>
+              
+           
             <SheetTrigger asChild>
               <Button variant="ghost">
                 <TiThMenu style={{ width: "30px", height: "30px" }} />
@@ -97,7 +117,7 @@ const Navbar = () => {
               </SheetHeader>
               <div className="flex flex-col mt-4 space-y-4">
                 <Link href="/" className="flex items-center text-lg font-medium hover:text-gray-400">
-                  <Home className="w-5 h-5 mr-2" />
+                <Home className="w-5 h-5 mr-2" />
                   Home
                 </Link>
                 <Link href="/menu" className="flex items-center text-lg font-medium hover:text-gray-400">
@@ -105,6 +125,7 @@ const Navbar = () => {
                   Menu
                 </Link>
                 <Link href="/menu" className="flex items-center text-lg font-medium hover:text-gray-400">
+                <Bike className="w-5 h-5 mr-2" />
                   Order Online
                 </Link>
                 {/* Cart in Mobile View */}
@@ -120,6 +141,9 @@ const Navbar = () => {
                 <Link href="/reservation" className="flex items-center text-lg font-medium hover:text-gray-400">
                   Reservation
                 </Link>
+                <Link href="/contact" className="flex items-center text-lg font-medium hover:text-gray-400">
+            Contact Us
+          </Link>
               </div>
             </SheetContent>
           </Sheet>

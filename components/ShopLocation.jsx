@@ -3,7 +3,7 @@ import React from "react";
 
 const ShopLocation = () => {
   return (
-    <section className="flex flex-col md:flex-row items-center justify-center max-w-7xl mx-auto p-8 bg-transparent">
+    <section className="flex flex-col md:flex-row items-center justify-center max-w-7xl mx-auto mt-20 p-8 bg-transparent">
       {/* Left Side: Text Content */}
       <div className="w-full md:w-1/2 p-6">
         <h2 className="text-3xl font-bold mb-4 text-white">Visit Our Shop</h2>

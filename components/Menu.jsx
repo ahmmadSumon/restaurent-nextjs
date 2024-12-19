@@ -3,7 +3,7 @@ import { TabsDemo } from './TabsDemo'
 
 const Menu = () => {
   return (
-    <div className="mt-32">
+    <div className="mt-20">
       <TabsDemo/>
     </div>
   )
